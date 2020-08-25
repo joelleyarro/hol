@@ -5,12 +5,7 @@ pipeline {
     }
         
     stages {
-        stage('Hello') {
-            steps {
-                echo 'Hello World'
-                sleep 5
-            }
-         } 
+       
     } stage('build') {
             steps {
                 echo 'Hello build'
@@ -21,16 +16,16 @@ pipeline {
             }
         }
         
-        stage('deploy') {
+        stage('test') {
             steps {
-                echo 'Hello deploy'
+                echo 'mvn test'
                 sleep 5
             }
         }
         
-        stage('test') {
+        stage('deploy') {
             steps {
-                echo 'Hello World'
+                echo 'Hello test'
                 sleep 5
             }
         }
