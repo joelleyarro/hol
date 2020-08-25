@@ -11,8 +11,7 @@ pipeline {
                 echo 'Hello build'
                 sh 'mvn clean'
                 sh 'mvn' install'
-                sh 'mvn package'
-                
+                sh 'mvn package'  
             }
         }
         
@@ -23,10 +22,13 @@ pipeline {
             }
         }
         
-        stage('deploy') {
+        stage('build and publish image') {
             steps {
-                echo 'Hello test'
-                sleep 5
+              script {
+                checkout scm
+                docker.WithRegistry('', 'dockerUserID') {
+                def customImage = docker.build("joelleyarro/hol-pipeline:${env.BUILD_ID")
+                customImage.push()
             }
         }
 }    }
